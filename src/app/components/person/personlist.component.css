@@ -1,0 +1,136 @@
+/*.personlistComponent .heading{
+    font-size:12px;
+    color:#838E9D;
+    margin-bottom: 15px;
+}
+
+.personlistComponent .valueContainer{
+    border-bottom:1px solid #CFD3D9;
+    line-height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor:pointer;
+    border-top: none;
+    border-right: none;
+    border-left:none;
+    width: 100%;
+    padding-right: 24px;
+    box-sizing: border-box;
+    -webkit-transition: 250ms all ease-in-out;
+    -moz-transition: 250ms all ease-in-out;
+    -ms-transition: 250ms all ease-in-out;
+    -o-transition: 250ms all ease-in-out;
+    transition: 250ms all ease-in-out;
+}
+
+.personlistComponent .addItem{
+    background-color:#D9DCE1;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    border-radius: 50px;
+    width:24px;
+    height:24px;
+    border:none;
+    display: inline-block;
+    vertical-align: middle;
+    border:none;
+    cursor:pointer;
+}
+
+.personlistComponent .addItem:focus, .personlistComponent .addItem:hover{
+    outline: none;
+}
+
+.personlistComponent .addItem::after{
+    content:"+";
+    color:#415167;
+    font-size:13px;
+}
+
+.personlistComponent .list{
+    position:relative;
+}
+
+.personlistComponent .input-wrapper{
+    position:relative;
+    border-bottom:10px;
+    position:relative;
+    width: 340px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.personlistComponent .caret{
+    color: #415167;
+    width: auto;
+    height: auto;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 24px solid #415167;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.personlistComponent .valueContainer:hover{
+    border-color:#415167;
+}
+
+.personlistComponent .valueContainer:focus{
+    border-color:#007AC3;
+    outline:none;
+}
+
+.personlistComponent .listContainer{
+    margin:0;
+    padding:0;
+    position: absolute;
+    top: 31px;
+    left: 0;
+    right: 0;
+    height: 44px;
+    overflow-y: scroll;
+    display: none;
+    border-left:1px solid #CFD3D9;
+    border-right:1px solid #CFD3D9;
+    border-bottom:1px solid #CFD3D9;
+}
+
+.personlistComponent .listContainer li{
+    line-height: 44px;
+}
+
+.personlistComponent .input-wrapper.open .listContainer{
+    display:block;
+}
+
+.personlistComponent li{
+    list-style:none;
+}
+
+.personlistComponent .elemTitle{
+    display:block;
+    font-size:14px;
+    color:#415167;
+    cursor:pointer;
+}
+
+.personlistComponent{
+    .heading{
+        font-size:12px;
+        color:#838E9D;
+        margin-bottom: 15px;
+    }
+    ul{
+        margin:0;
+        padding:0;
+    }
+    li{
+        list-style:none;
+    }
+    .elemTitle{
+        display:block;
+    }
+}*/

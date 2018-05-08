@@ -1,0 +1,87 @@
+<div class="container">
+    <section class="personlistComponent">
+        <div class="heading">{{componentTitle}}</div>
+        <div class="list">
+            <div (clickOutside)="clickOutsideFunc()" (click)="toggleList()" (keydown.delete)="onCanc(focusStateSelect)" (keydown.arrowdown)="onArrowDown()"
+                (keydown.arrowup)="onArrowUp()" (keydown.alt.arrowdown)="onAltArrow()" class="input-wrapper" [ngClass]="{ 'open' : isOpenedDropdown===true }"
+                [attr.data-focus]="focusStateSelect" (keydown)="handlingControl($event)">
+                <input type="text" class="valueContainer" [ngClass]="{active: isActive(listperson)}" readonly [(ngModel)]="defaultSelectEntry"
+                    id="listContainerControl" tabindex="0">
+                <div class="caret"></div>
+                <ul id="theList" class="listContainer" *ngIf='(arrayListPersons && arrayListPersons.length)'>
+                    <li class="theListLi" *ngFor="let listperson of arrayListPersons; let j = index;" (click)="select(listperson)" [ngClass]="{active: isActive(listperson), focused: j===this.focusStateSelect }"
+                        tabindex="0" (keydown.enter)="select(listperson);toggleList()" (keydown.shift.enter)="editThisElement(listperson.ID, listperson.surname,listperson.name,listperson.birthDate)">
+                        <div class="elemTitle">
+                            {{ listperson.surname }} {{ listperson.name}} {{ listperson.birthDate | date: 'dd/MM/yyyy' }}
+                            <div class="elemActions">
+                                <div class="editElement" (click)="editThisElement(listperson.ID, listperson.surname,listperson.name,listperson.birthDate)">
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                                <div class="deleteElement" (click)="deleteThisElement(j, arrayListPersons)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="addItem" (click)="openModal()" tabindex="10">
+            </button>
+        </div>
+    </section>
+    <div id="modal" [ngClass]="{ 'openmodal' : isOpenedModal===true }">
+        <div class="form" *ngIf="isEditingSinglePerson; else editForm">
+            <div class="inner-form">
+                <div class="title">{{ modalTitle }}</div>
+                <div class="inner-form-inputs">
+                    <div class="input-wrap">
+                        <label for="inputSurname">Cognome</label>
+                        <input type="text" #inputSurname>
+                    </div>
+                    <div class="input-wrap">
+                        <label for="inputName">Nome</label>
+                        <input type="text" #inputName>
+                    </div>
+                    <div class="input-wrap">
+                        <label for="inputDate">Data nascità</label>
+                        <input type="date" #inputDate>
+                    </div>
+                </div>
+                <div class="inner-form-buttons">
+                    <button (click)="closeModal()" class="btnGeneral">Annulla</button>
+                    <button (click)="insertPerson(inputSurname.value, inputName.value, inputDate.value)" (click)="inputSurname.value=''; inputName.value=''; inputDate.value=''"
+                        class="btnGeneral">Conferma</button>
+                </div>
+            </div>
+        </div>
+        <ng-template #editForm>
+            <div class="form">
+                <div class="inner-form">
+                    <div class="title">Modifica questa persona</div>
+                    <div class="inner-form-inputs">
+                        <div class="input-wrap">
+                            <label for="editPersonID">ID</label>
+                            <input readonly type="text" [(ngModel)]="arrEditPerson[0].ID">
+                        </div>
+                        <div class="input-wrap">
+                            <label for="editPersonSurname">Cognome</label>
+                            <input type="text" [(ngModel)]="arrEditPerson[0].surname">
+                        </div>
+                        <div class="input-wrap">
+                            <label for="editPersonName">Nome</label>
+                            <input type="text" [(ngModel)]="arrEditPerson[0].name">
+                        </div>
+                        <div class="input-wrap">
+                            <label for="editPersonDate">Data nascità</label>
+                            <input type="date" [ngModel]="arrEditPerson[0].birthDate | date:'yyyy-MM-dd'" (ngModelChange)="arrEditPerson[0].birthDate = $event">
+                        </div>
+                    </div>
+                    <div class="inner-form-buttons">
+                        <button (click)="closeModal()" class="btnGeneral">Annulla</button>
+                        <button (click)="confirmEditPerson()" class="btnGeneral">Conferma</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <div>
